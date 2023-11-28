@@ -1,31 +1,46 @@
-int analog_out = 0;
-int up_flag = 1;
-int down_flag = 0;
+#include <ADCTouch.h>
 
-void setup() {
-  // initialize digital pin LED_BUILTIN as an output.
-  pinMode(0, OUTPUT);
-}
+int ref0, ref1;     //reference values to remove offset
+int led_state = 0;
 
-void loop() {
 
-  analogWrite(0, analog_out);
+void setup() 
+{
+    // No pins to setup, pins can still be used regularly, although it will affect readings
 
-  if (analog_out >= 250) {
-    up_flag = 0;
-    down_flag = 1;
-  }
-  if (analog_out <= 10) {
-    up_flag = 1;
-    down_flag = 0;
-  }
+    Serial.begin(9600);
 
-  if (up_flag == 1) {
-    analog_out += 10;
-  }
-  else {
-    analog_out -= 10;
-  }
-  
-  delay(50);
+    ref0 = ADCTouch.read(A0, 10);    //create reference values to 
+    ref1 = ADCTouch.read(A1, 10);    //account for the capacitance of the pad
+
+    pinMode(13, OUTPUT);
+} 
+
+void loop() 
+{
+    int value0 = ADCTouch.read(A0);   //no second parameter
+    int value1 = ADCTouch.read(A1);   //   --> 100 samples
+
+    value0 -= ref0;       //remove offset
+    value1 -= ref1;
+
+    Serial.print(value0 > 40);    //send (boolean) pressed or not pressed
+    Serial.print("\t");           //use if(value > threshold) to get the state of a button
+
+    if (value0 > 40 == 1) {
+      if (led_state == 0){
+        digitalWrite(13, 1);
+        led_state = 1;
+        delay(200);
+      }
+      else {
+        digitalWrite(13, 0);
+        led_state = 0;
+        delay(200);
+      }
+    }
+
+    Serial.print(value0);
+    Serial.print("\t\n");
+    delay(5);
 }
