@@ -8,39 +8,29 @@ void setup()
 {
     // No pins to setup, pins can still be used regularly, although it will affect readings
 
-    Serial.begin(9600);
+    // Serial.begin(9600);
+    pinMode(1, OUTPUT);
 
-    ref0 = ADCTouch.read(A0, 10);    //create reference values to 
-    ref1 = ADCTouch.read(A1, 10);    //account for the capacitance of the pad
-
-    pinMode(13, OUTPUT);
+    ref0 = ADCTouch.read(A3, 500);    // sense pin uC#2 
 } 
 
 void loop() 
 {
-    int value0 = ADCTouch.read(A0);   //no second parameter
-    int value1 = ADCTouch.read(A1);   //   --> 100 samples
+    int value0 = ADCTouch.read(A3);
 
     value0 -= ref0;       //remove offset
-    value1 -= ref1;
 
-    Serial.print(value0 > 40);    //send (boolean) pressed or not pressed
-    Serial.print("\t");           //use if(value > threshold) to get the state of a button
-
-    if (value0 > 40 == 1) {
+    if (value0 > 100) {
       if (led_state == 0){
-        digitalWrite(13, 1);
+        digitalWrite(1, 1);
         led_state = 1;
         delay(200);
       }
       else {
-        digitalWrite(13, 0);
+        digitalWrite(1, 0);
         led_state = 0;
         delay(200);
       }
     }
-
-    Serial.print(value0);
-    Serial.print("\t\n");
     delay(5);
 }
