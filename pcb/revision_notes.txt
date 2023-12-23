@@ -1,0 +1,18 @@
+V1:
+Pogreske kod narucivanja:
+2023-12-16 - Assembly V1
+ - LED 		krivi footprint (narucene premale)
+ - R13 		krivi footprint (naruceni premali)
+ - LED10	povecati footprint u schemi
+ - C3		krivi footprint (narucen premali)
+ - C4		krivi footprint (narucen premali)
+ - ARD		povecati footprint THT
+
+Tocke revizije za verziju 2:
+* Minimalni footprint za rucno lemljanje 1206(3216 metric)
+* Bypass kondenzatore orijentirati jednako (C1 je 'naopacke')
+* Drasticno povecati header prema Arduinu i povecati THT vije
+* Povecati footprint LED diode koja signalizira napajanje uC-a
+* Povecati PAD za External sens zicu
+* Pronaci/napraviti footprint USB-C konektora sa THT konaktima (pwr-only)?
+* Povecati footprint SRC CAP otpornika (?)

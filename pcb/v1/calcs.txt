@@ -1,0 +1,109 @@
+Odabir ledice:
+
+CIE 1931 color space calc: https://viereck.ch/hue-xy-rgb/
+
+1. CSL1103WBAW1
+x = 0.282
+y = 0.249
+= ljubicasto
+
+2. CSL1103WBBW1
+x = 0.261
+y = 0.261
+= baby blue
+
+3. CSL1103WBDW1 ** Odabrano
+x = 0.284
+y = 0.303
+= ice blue
+
+3. CSL1103WBCW1
+x = 0.303
+y = 0.294
+= rozo
+
+
+CSL1103WBDW1:
+pckg.	= 0603
+Vf	= 3.2	V
+If	= 40 	mA, 20 mA steady state
+Lum	= 1.5	cd
+P_led	= 152	mW
+
+R_led calc:
+R 	= (5-3.2)V / 0.02 A 	= 90 	Ohm
+P_r	= RI^2 = 90 x 0.02^2	= 0.036	W
+
+Num. of LEDs
+* Note: 1 cd == cca 1 svijeca
+1	= 20 	mA		-> 1.5 	cd
+2	= 40 	mA		-> 3	cd
+3	= 60 	mA		-> 4.5	cd
+4	= 80 	mA		-> 6	cd
+5	= 100 	mA		-> 7.5	cd
+6	= 120	mA		-> 9	cd
+7	= 140	mA		-> 10.5	cd
+8	= 160	mA		-> 12	cd
+9	= 180	mA ** Odabrano 	-> 13.5 cd
+10	= 200	mA		-> 15	cd
+
+P_tot 	= (P_r + P_led) x 9	= 1.692	W
+
+
+uC active LED:
+LTST-C281KGKT
+pckg.	= 0402
+Vf	= 2	V
+If	= 20 	mA, 10 mA steady state
+Lum	= 0.035	cd
+P_led	= 75	mW
+
+R_ucled	= (5-2)V / 0.01 A	= 300	Ohm
+P_ruc	= RI^2 = 300 x 0.01^2	= 0.03	W
+
+2023-12-16 - Assembly V1
+ - LED 		krivi footprint (narucene premale)
+ - R13 		krivi footprint (naruceni premali)
+ - LED10	povecati footprint u schemi
+ - C3		krivi footprint (narucen premali)
+ - C4		krivi footprint (narucen premali)
+ - ARD		povecati footprint THT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
