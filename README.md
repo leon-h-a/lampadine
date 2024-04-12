@@ -11,16 +11,16 @@
 3. Install dependency ```pio lib install ADCTouch```
 4. Setup Platformio to flash via Arduino (platformio.ini)
 
-    [env:attiny85]
-    platform = atmelavr
-    board = attiny85
-    framework = arduino
-    upload_protocol = stk500v1
-    lib_deps = martin2250/ADCTouch@^1.0.4
-    upload_flags =
-            -P$UPLOAD_PORT
-            -b$UPLOAD_SPEED
-    upload_port = COM7
-    upload_speed = 19200
+        [env:attiny85]
+        platform = atmelavr
+        board = attiny85
+        framework = arduino
+        upload_protocol = stk500v1
+        lib_deps = martin2250/ADCTouch@^1.0.4
+        upload_flags =
+                -P$UPLOAD_PORT
+                -b$UPLOAD_SPEED
+        upload_port = COM7
+        upload_speed = 19200
 
 5. Flash with ```pio run --target upload```
