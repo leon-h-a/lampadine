@@ -1,17 +1,26 @@
-### Connection diagram for porgrammer
-    ARD_10 -> uC[1]
-    ARD_11 -> uC[5]
-    ARD_12 -> uC[6]
-    ARD_13 -> uC[7]
-    VCC -> VCC
-    GND -> GND
+### Connection between Arduino and PCB header
+    ARD_13  -> 1
+    ARD_12  -> 2
+    ARD_11  -> 3
+    ARD_10  -> 4
+    ARD_GND -> 5
 
-### Settings for programming via Arduino
-1. Burn ArduinoISP
-2. Add [Attiny lib](https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json) & install it
-3. Flash setup:
-*   Board: Attiny85
-*   Processor: Attiny85
-*   Clock: Internal - 1MHz
-*   Programmer: Arduino as ISP
-5. Flash
+### Settings for programming via Arduino (platformio)
+1. Install platformio on Windows
+2. Init project ```pio project init --board attiny85``` ($ pio boards)
+3. Install dependency ```pio lib install ADCTouch```
+4. Setup Platformio to flash via Arduino (platformio.ini)
+
+    [env:attiny85]
+    platform = atmelavr
+    board = attiny85
+    framework = arduino
+    upload_protocol = stk500v1
+    lib_deps = martin2250/ADCTouch@^1.0.4
+    upload_flags =
+            -P$UPLOAD_PORT
+            -b$UPLOAD_SPEED
+    upload_port = COM7
+    upload_speed = 19200
+
+5. Flash with ```pio run --target upload```
