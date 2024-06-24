@@ -24,3 +24,11 @@
         upload_speed = 19200
 
 5. Flash with ```pio run --target upload```
+
+### In case of avrdude verification error, mismatch byte
+
+Remember to power PCB via USB-C before uploading.
+
+### Timing issues
+
+Define 'board_build.f_cpu' flag in platformio.ini conf file
