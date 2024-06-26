@@ -1,33 +1,23 @@
 #include <ADCTouch.h>
-// #include <SoftwareSerial.h>
 
-// Serial comms
-// #define rxPin 3
-// #define txPin 4
-// SoftwareSerial mySerial =  SoftwareSerial(rxPin, txPin);
-
-// LEDS
+int ref;
 int ledPin = 1;
+int toggleThr = 250;
 
 void setup() {
-    // Define pin modes for TX and RX
-    // pinMode(rxPin, INPUT);
-    // pinMode(txPin, OUTPUT);
-    // Set the baud rate for the SoftwareSerial object
-    // mySerial.begin(9600);
-
-    // LEDS
+    ref = ADCTouch.read(A2, 500);    // sense pin uC#3
     pinMode(ledPin, OUTPUT);  // sets the pin as output
 }
 
 
 void loop() {
-    analogWrite(ledPin, 255);
-    delay(50);
+    int hold = ADCTouch.read(A2);
+    hold -= ref;
 
-    analogWrite(ledPin, 0);
-    delay(50);
-
-    // mySerial.println(22);
-    // delay(500);
+    if (hold > toggleThr) {
+        analogWrite(ledPin, 255); 
+    }
+    else {
+        analogWrite(ledPin, 0); 
+    }
 }
